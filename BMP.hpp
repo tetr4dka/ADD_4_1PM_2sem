@@ -62,11 +62,11 @@ namespace paint
 
 
 		void Open(std::string name) {
-			// Чтение файла
+			// Г—ГІГҐГ­ГЁГҐ ГґГ Г©Г«Г 
 			std::ifstream in(name, std::ios::binary); 
 
 			BMPHEADER bmpHeader;
-			// Считать 14 байтов побайтово и заполнить структуру BMPHEADER
+			// Г‘Г·ГЁГІГ ГІГј 14 ГЎГ Г©ГІГ®Гў ГЇГ®ГЎГ Г©ГІГ®ГўГ® ГЁ Г§Г ГЇГ®Г«Г­ГЁГІГј Г±ГІГ°ГіГЄГІГіГ°Гі BMPHEADER
 			in.read(reinterpret_cast<char*>(&bmpHeader), sizeof(BMPHEADER));
 
 			BMPINFO bmpInfo;
@@ -95,9 +95,9 @@ namespace paint
 			int width = m_w;
 			int height = m_h;
 
-			// Формирование заголовка
+			// Г”Г®Г°Г¬ГЁГ°Г®ГўГ Г­ГЁГҐ Г§Г ГЈГ®Г«Г®ГўГЄГ 
 			BMPHEADER bmpHeader_new;
-			bmpHeader_new.Type = 0x4D42; // Тип данных BMP
+			bmpHeader_new.Type = 0x4D42; // Г’ГЁГЇ Г¤Г Г­Г­Г»Гµ BMP
 			bmpHeader_new.Size = 14 + 40 + (3 * width * height);
 			if (width % 4 != 0)
 				bmpHeader_new.Size += (4 - (3 * width) % 4) * height;
@@ -107,7 +107,7 @@ namespace paint
 
 			out.write(reinterpret_cast<char*>(&bmpHeader_new), sizeof(BMPHEADER));
 
-			// Формирование информации об изображении
+			// Г”Г®Г°Г¬ГЁГ°Г®ГўГ Г­ГЁГҐ ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГЁ Г®ГЎ ГЁГ§Г®ГЎГ°Г Г¦ГҐГ­ГЁГЁ
 			BMPINFO bmpInfo_new;
 			bmpInfo_new.BitCount = 24;
 			bmpInfo_new.ClrImportant = 0;
@@ -123,7 +123,7 @@ namespace paint
 
 			out.write(reinterpret_cast<char*>(&bmpInfo_new), sizeof(BMPINFO));
 
-			// Записать пиксели
+			// Г‡Г ГЇГЁГ±Г ГІГј ГЇГЁГЄГ±ГҐГ«ГЁ
 			for (int i = 0; i < bmpInfo_new.Height; i++)
 			{
 				for (int j = 0; j < bmpInfo_new.Width; j++)
@@ -317,7 +317,7 @@ namespace paint
 				}
 		}
 
-		void Incrypt(char digit) {
+		void Incrypt(char digit) {//С„СѓРЅРєС†РёСЏ С€РёС„СЂРѕРІР°РЅРёСЏ С‚РµРєСЃС‚РѕРІРѕР№ РёРЅС„РѕСЂРјР°С†РёРё РІ РёР·РѕР±СЂР°Р¶РµРЅРёРё BMP
 			//int space = 0;
 			//for (int i = 0; i < m_h; i++)
 				//for (int j = 0; j < m_w; j++) {
@@ -433,7 +433,7 @@ namespace paint
 			m_space += 6;
 		}
 
-		void Decrypt() {
+		void Decrypt() {// Р¤СѓРЅРєС†РёСЏ РґРµС€РёС„СЂРѕРІР°РЅРёСЏ С‚РµРєСЃС‚РѕРІРѕР№ РёРЅС„РѕСЂРјР°С†РёРё РЅР° РѕСЃРЅРѕРІРµ РёР·РјРµРЅРµРЅРёСЏ С†РІРµС‚Р°
 			for (int i = 0; i < m_h; i++)
 				for (int j = 0; j < m_w; j++) {
 					m_pix[i][j].b *= 200;
